@@ -1,0 +1,12 @@
+---
+title: "PSTAT 131 HW 1"
+author: "Raymond Lee"
+date: '2022-04-01'
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+1. 
