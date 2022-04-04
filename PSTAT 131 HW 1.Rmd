@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 2. Regression models involve quantitative responses while classification models involve qualitative responses. 
 
-3. 
+3. For regression, we can use mean squared error and R squared. For classification, we can use Type 1 error and Type 2 error.
 
 4. Descriptive models try to visually emphasize a trend in the data (lecture 2). Inferential models try to find which data are significant, test theories, possibly state causal claims, and describe the relationship between the outcome and predictors (lecture 2). Predictive models try to find which data best fits the model and predict the response with minimum reducible error (lecture 2). 
 
@@ -24,7 +24,7 @@ Empirically-driven means that no assumptions about *f* are made, and an estimate
 
 A mechanistic model is easier to understand. Assuming a form for *f* allows us to estimate a set of parameters instead of fitting an arbitrary *f* (pg. 22)
 
-Bias is the error introduced by estimating a problem with a simpler model. Variance is the amount by which $\hat{f}$ would change if we obtained it with a different data set. As we use more flexible methods, the variance will increase, and the bias will decrease. However, at some point, increasing flexibility has little impact on bias but significantly increases the variance. We need to find a method/model for which the variance and squared bias are both low.  
+Bias is the error introduced by estimating a problem with a simpler model. Variance is the amount by which $\hat{f}$ would change if we obtained it with a different data set. As we use more flexible methods, the variance will increase, and the bias will decrease. However, at some point, increasing flexibility has little impact on bias but significantly increases the variance. We need to find a method/model for which the variance and squared bias are both low (pg. 34-36).  
 
 6. The first question is predictive because because we are trying to predict an outcome based on the data. The second question is inferential because describing the change involves the relationship between the outcome and predictors. 
 
@@ -61,5 +61,8 @@ As the number of cylinders increases, there is a greater presence of higher hwy 
 ```{r}
 library(corrplot)
 
-
+df = subset(mpg, select=-c(1, 2, 6, 7, 10, 11))
+cor_df = cor(df)
+corrplot(cor_df, method="number", type="lower")
 ```
+A lower triangle correlation matrix of the numeric variables was made. Displ is positively correlated with year and cyl but negatively correlated with cty and hwy. Year is positively correlated with cyl. Cyl is negatively correlated with cty and hwy. Cty is positively correlated with hwy. Most of the relationships make sense, but it is interesting to me that year is positively correlated with cyl. That is, as the model year increases, the more cylinders there are. It is also interesting that displ is positively correlated with year. More recent models have more engine displacement. 
